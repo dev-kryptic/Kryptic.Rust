@@ -1,4 +1,4 @@
-# kryptic-daemon
+# kryptic-daemon-client
 
 The Kryptic daemon client for Rust. During development startup it asks the local
 Kryptic daemon for the current project's secrets and puts them into the process
@@ -8,7 +8,7 @@ means your app starts with the environment it already has.
 ```toml
 # Cargo.toml
 [dependencies]
-kryptic-daemon = "0.1"
+kryptic-daemon-client = "0.1"
 ```
 
 ```rust
