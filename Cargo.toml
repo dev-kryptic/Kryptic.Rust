@@ -1,0 +1,20 @@
+[package]
+name = "kryptic-daemon"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.70"
+license = "Apache-2.0"
+description = "Kryptic daemon client for Rust. Passively injects development secrets from the local Kryptic daemon into the process environment. No-op outside development."
+repository = "https://github.com/dev-kryptic/Kryptic.Rust"
+homepage = "https://kryptic.dev"
+readme = "README.md"
+keywords = ["kryptic", "secrets", "daemon", "config"]
+categories = ["config", "development-tools"]
+include = ["src/**/*", "LICENSE", "README.md"]
+
+[lib]
+name = "kryptic"
+path = "src/lib.rs"
+
+[dependencies]
+serde_json = "1"
