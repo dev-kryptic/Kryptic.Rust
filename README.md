@@ -8,7 +8,7 @@ means your app starts with the environment it already has.
 ```toml
 # Cargo.toml
 [dependencies]
-kryptic-daemon-client = "0.1"
+kryptic-daemon-client = "1.0"
 ```
 
 ```rust
