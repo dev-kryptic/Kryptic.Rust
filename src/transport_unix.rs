@@ -16,7 +16,26 @@ pub(crate) fn socket_path() -> PathBuf {
             }
         }
     }
-    PathBuf::from("/tmp/kryptic-daemon.sock")
+    // Same per-user directory the daemon listens on (PROTOCOL.md). Never /tmp.
+    if cfg!(target_os = "macos") {
+        if let Ok(home) = std::env::var("HOME") {
+            if !home.is_empty() {
+                return Path::new(&home)
+                    .join("Library/Application Support/kryptic/kryptic-daemon.sock");
+            }
+        }
+    }
+    if let Ok(config_home) = std::env::var("XDG_CONFIG_HOME") {
+        if !config_home.is_empty() {
+            return Path::new(&config_home).join("kryptic/kryptic-daemon.sock");
+        }
+    }
+    if let Ok(home) = std::env::var("HOME") {
+        if !home.is_empty() {
+            return Path::new(&home).join(".config/kryptic/kryptic-daemon.sock");
+        }
+    }
+    PathBuf::from("kryptic-daemon.sock")
 }
 
 pub(crate) fn round_trip(line: &[u8], timeout: Duration) -> std::io::Result<Vec<u8>> {
